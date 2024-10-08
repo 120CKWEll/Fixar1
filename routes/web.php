@@ -124,3 +124,6 @@ Route::get('/employee/accepted-requests', [EmployeeController::class, 'showAccep
 // Route สำหรับแสดงประวัติการแจ้งซ่อม
 Route::get('/admin/table', [AdminController::class, 'showAcceptedRequests'])->name('admin.repairRequests');
 
+
+
+Route::post('/Employee/register', [EmployeeController::class, 'register']);

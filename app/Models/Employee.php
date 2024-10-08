@@ -28,4 +28,9 @@ class Employee extends Model implements Authenticatable
     {
         return $this->belongsTo(ServiceType::class, 'service_type'); // ชื่อคอลัมน์ที่เก็บ ID ของประเภทการทำงาน
     }
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class, 'service_type'); // ชื่อคอลัมน์ที่เก็บ ID ของพนักงาน
+    }
 }

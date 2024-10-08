@@ -53,30 +53,62 @@ class EmployeeController extends Controller
         return view('Employee.register'); // เปลี่ยนเป็นชื่อ view ของคุณ
     }
 
+    
+    // public function register(Request $request)
+    // {
+    //     dd($request->all());
+    //     $request->validate([
+    //         'name' => 'required|string|max:255',
+    //         'surname' => 'required|string|max:255',
+    //         'phone' => 'required|string|max:15',
+    //         'email' => 'required|email|unique:employees,email',
+    //         'password' => 'required|string|min:8', // ตรวจสอบความยาวรหัสผ่าน
+    //         'serviceType' => 'required|integer',
+    //         'serviceArea' => 'required|integer',
+    //     ]);
+    
+    //     Employee::create([
+    //         'name' => $request->name,
+    //         'surname' => $request->surname,
+    //         'phone' => $request->phone,
+    //         'email' => $request->email,
+    //         'password' => Hash::make($request->password), // เข้ารหัสรหัสผ่าน
+    //         'service_type' => $request->serviceType,
+    //         'service_area' => $request->serviceArea,
+    //     ]);
+    
+    //     return redirect()->back()->with('success', 'ลงทะเบียนสำเร็จ!');
+    // }
+
     public function register(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'surname' => 'required|string|max:255',
-            'phone' => 'required|string|max:10',
-            'email' => 'required|email|unique:workers,email',
-            'password' => 'required|string|min:8', // ตรวจสอบความยาวรหัสผ่าน
-            'serviceType' => 'required|string',
-            'serviceArea' => 'required|string',
-        ]);
+{
+    // Validate the request data
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'surname' => 'required|string|max:255',
+        'phone' => 'required|string|max:10',
+        'email' => 'required|email|unique:employees,email',
+        'password' => 'required|string|min:8',
+        'serviceType' => 'required|string',
+        'serviceArea' => 'required|string',
+    ]);
 
-        Employee::create([
-            'name' => $request->name,
-            'surname' => $request->surname,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'password' => Hash::make($request->password), // เข้ารหัสรหัสผ่าน
-            'service_type' => $request->serviceType,
-            'service_area' => $request->serviceArea,
-        ]);
+    // Create new employee
+    Employee::create([
+        'name' => $request->name,
+        'surname' => $request->surname,
+        'phone' => $request->phone,
+        'email' => $request->email,
+        'password' => Hash::make($request->password), // Encrypt the password
+        'service_type' => $request->serviceType,
+        'service_area' => $request->serviceArea,
+    ]);
 
-        return redirect()->back()->with('success', 'ลงทะเบียนสำเร็จ!');
-    }
+    // Redirect back with success message
+    return redirect()->back()->with('success', 'ลงทะเบียนสำเร็จ!');
+}
+
+    
     public function showRepairRequests()
     {
         // Fetch all repair requests that are not deleted

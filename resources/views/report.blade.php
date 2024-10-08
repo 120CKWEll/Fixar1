@@ -154,7 +154,42 @@
                 <input type="file" class="form-control-file" id="issueImage" name="issueImage">
             </div>
 
-            <!-- ชื่อผู้ใช้ -->
+            @if (Auth::check())
+                    <label for="name">ชื่อ:</label>
+                    <input type="text" id="name" name="name"
+                        value="{{ old('name', Auth::user()->name ?? '') }}" required><br><br>
+
+                    <label for="phone">เบอร์โทรศัพท์:</label>
+                    <input type="text" id="phone" name="phone"
+                        value="{{ old('phone', Auth::user()->phone ?? '') }}" required><br><br>
+
+                        <div class="mb-3">
+                            <label for="address" class="form-label">ที่อยู่</label>
+                            <input type="text" class="form-control" id="address" name="address"
+                                placeholder="ที่อยู่" required>
+                        </div>
+                   
+                @else
+                    <div class="mb-3">
+                        <label for="name" class="form-label">ชื่อ</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="ชื่อ"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">เบอร์โทรศัพท์</label>
+                        <input type="tel" class="form-control" id="phone" name="phone"
+                            placeholder="เบอร์ติดต่อ" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address" class="form-label">ที่อยู่</label>
+                        <input type="text" class="form-control" id="address" name="address"
+                            placeholder="ที่อยู่" required>
+                    </div>
+                @endif
+
+            {{-- <!-- ชื่อผู้ใช้ -->
             <div class="mb-3">
                 <label for="name" class="form-label">ชื่อ</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="ชื่อ" required>
@@ -164,7 +199,7 @@
             <div class="mb-3">
                 <label for="phone" class="form-label">เบอร์โทรศัพท์</label>
                 <input type="tel" class="form-control" id="phone" name="phone" placeholder="เบอร์ติดต่อ" required>
-            </div>
+            </div> --}}
 
             <!-- ประเภทของรถ -->
             <div class="mb-3">

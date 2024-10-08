@@ -162,6 +162,7 @@ h2, h3 {
                   </form>
               @else
                   <a href="/login" class="btn btn-outline-dark">เข้าสู่ระบบ</a>
+                  <a href="/Employee/login" class="btn btn-outline-dark">เข้าสู่ระบบสำหรับช่าง</a>
               @endif
             </div>
         </div>

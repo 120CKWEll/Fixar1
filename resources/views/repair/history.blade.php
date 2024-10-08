@@ -42,7 +42,7 @@
                         <th>เบอร์โทรศัพท์</th>
                         <th>ประเภทของรถ</th>
                         <th>รายละเอียดปัญหา</th>
-                        <th>วันที่นัดหมาย</th>
+                        <th>วันเวลาที่นัดหมาย</th>
                         <th>สถานะ</th>
                         <th>ดำเนินการ</th>
                     </tr>
@@ -50,11 +50,13 @@
                 <tbody>
                     @foreach ($repairRequests as $request)
                     <tr>
-                        <td>{{ $request->user ? $request->user->name : 'ไม่ระบุ' }}</td>
+                        
+                        <td>{{ $request->name }}</td>
                         <td>{{ $request->phone }}</td>
                         <td>{{ $request->vehicle_type }}</td>
                         <td>{{ $request->issue_details }}</td>
                         <td>{{ $request->appointment_datetime }}</td>
+                        {{-- <td>{{ $request->appointment_time }}</td> --}}
                         <td>{{ $request->status }}</td>
                         <td>
                             <a href="{{ route('review', $request->id) }}" class="btn btn-success">รีวิว</a> <!-- ปุ่มรีวิว -->
